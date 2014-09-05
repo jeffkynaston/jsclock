@@ -1,8 +1,8 @@
 var ccX = 300; // circle center coordinate X, should be same as the center of the clock face
 var ccY = 300; // circle center coordinate Y, should be same as the center of the clock face
-var t1Radius = 150; // length of hour hand
-var t2Radius = 200; // length of minute hand
-var t3Radius = 240; // length of second hand
+var hourHandRadius = 150; // length of hour hand
+var minuteHandRadius = 200; // length of minute hand
+var secondHandRadius = 240; // length of second hand
 
 
 function moveHourHand(){
@@ -11,10 +11,10 @@ function moveHourHand(){
 	if (currentHour > 14) {
 		currentHour -= 12
 	}
-	var t1Angle = ((currentHour - 3) * 30) + (((d.getMinutes() * 6)/12)) // starting point for hour hand
-  var theta = t1Angle * Math.PI / 180;
-  var xCoord = (t1Radius*(Math.cos(theta)) + ccX)
-  var yCoord = (t1Radius*(Math.sin(theta)) + ccY)
+	var hourHandAngle = ((currentHour - 3) * 30) + (((d.getMinutes() * 6)/12)) // starting point for hour hand
+  var theta = hourHandAngle * Math.PI / 180;
+  var xCoord = (hourHandRadius*(Math.cos(theta)) + ccX)
+  var yCoord = (hourHandRadius*(Math.sin(theta)) + ccY)
   var hourHandCoords = {
   	"x": xCoord,
   	"y": yCoord
@@ -28,10 +28,10 @@ function moveMinuteHand(){
 	if (currentMinute < 15) {
 		currentMinute += 60
 	}
-  var t2Angle = (((currentMinute - 15) * 6)) + (((d.getSeconds() * 6)/60))
-  var theta = t2Angle * Math.PI / 180;
-  var xCoord = (t2Radius*(Math.cos(theta)) + ccX)
-  var yCoord = (t2Radius*(Math.sin(theta)) + ccY)
+  var minuteHandAngle = (((currentMinute - 15) * 6)) + (((d.getSeconds() * 6)/60))
+  var theta = minuteHandAngle * Math.PI / 180;
+  var xCoord = (minuteHandRadius*(Math.cos(theta)) + ccX)
+  var yCoord = (minuteHandRadius*(Math.sin(theta)) + ccY)
   var minuteHandCoords = {
   	"x": xCoord,
   	"y": yCoord
@@ -45,10 +45,10 @@ function moveSecondHand(){
 	if (currentSecond < 15) {
 		currentSecond += 60
 	}
-	var t3Angle = ((currentSecond - 15) * 6)
-  var theta = t3Angle * Math.PI / 180;
-  var xCoord = (t3Radius*(Math.cos(theta)) + ccX)
-  var yCoord = (t3Radius*(Math.sin(theta)) + ccY)
+	var secondHandAngle = ((currentSecond - 15) * 6)
+  var theta = secondHandAngle * Math.PI / 180;
+  var xCoord = (secondHandRadius*(Math.cos(theta)) + ccX)
+  var yCoord = (secondHandRadius*(Math.sin(theta)) + ccY)
   var secondHandCoords = {
   	"x": xCoord,
   	"y": yCoord
