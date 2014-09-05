@@ -1,57 +1,72 @@
-var ccX = 300; // circle center coordinate X, should be same as the center of the clock face
-var ccY = 300; // circle center coordinate Y, should be same as the center of the clock face
-var hourHandRadius = 150; // length of hour hand
-var minuteHandRadius = 200; // length of minute hand
-var secondHandRadius = 240; // length of second hand
-
-
-function moveHourHand(){
-	var d = new Date();
-	var currentHour = d.getHours();
-	if (currentHour > 14) {
-		currentHour -= 12
-	}
-	var hourHandAngle = ((currentHour - 3) * 30) + (((d.getMinutes() * 6)/12)) // starting point for hour hand
-  var theta = hourHandAngle * Math.PI / 180;
-  var xCoord = (hourHandRadius*(Math.cos(theta)) + ccX)
-  var yCoord = (hourHandRadius*(Math.sin(theta)) + ccY)
-  var hourHandCoords = {
-  	"x": xCoord,
-  	"y": yCoord
-  }
-  return hourHandCoords
+function clockHand() {
+	this.centerX = 300
+	this.centerY = 300
+	this.x = 300
+	this.y = 300
+	this.color = "#fff"
 }
 
-function moveMinuteHand(){
-	var d = new Date();
-  var currentMinute = d.getMinutes();
-	if (currentMinute < 15) {
-		currentMinute += 60
+hourHand = new clockHand()
+hourHand.length = 150
+hourHand.width = 8
+hourHand.currentTime = function() {
+	return new Date().getHours();
+}
+hourHand.adjustedTime = function() {
+	var time = hourHand.currentTime()
+	if (time > 14) {
+		return (time -= 12)
 	}
-  var minuteHandAngle = (((currentMinute - 15) * 6)) + (((d.getSeconds() * 6)/60))
-  var theta = minuteHandAngle * Math.PI / 180;
-  var xCoord = (minuteHandRadius*(Math.cos(theta)) + ccX)
-  var yCoord = (minuteHandRadius*(Math.sin(theta)) + ccY)
-  var minuteHandCoords = {
-  	"x": xCoord,
-  	"y": yCoord
-  }
-  return minuteHandCoords
+	return time
+}
+hourHand.angle = function() {
+	var time = hourHand.adjustedTime()
+	return ((time - 3) * 30) + (((new Date().getMinutes() * 6)/12))
 }
 
-function moveSecondHand(){
-	var d = new Date();
-	var currentSecond = d.getSeconds();
-	if (currentSecond < 15) {
-		currentSecond += 60
-	}
-	var secondHandAngle = ((currentSecond - 15) * 6)
-  var theta = secondHandAngle * Math.PI / 180;
-  var xCoord = (secondHandRadius*(Math.cos(theta)) + ccX)
-  var yCoord = (secondHandRadius*(Math.sin(theta)) + ccY)
-  var secondHandCoords = {
-  	"x": xCoord,
-  	"y": yCoord
-  }
-  return secondHandCoords
+minuteHand = new clockHand()
+minuteHand.length = 200
+minuteHand.width = 5
+minuteHand.currentTime = function() {
+	return new Date().getMinutes();
 }
+minuteHand.adjustedTime = function() {
+	var time = minuteHand.currentTime()
+	if (time < 15) {
+		return (time += 60)
+	}
+	return time
+}
+minuteHand.angle = function() {
+	var time = minuteHand.adjustedTime()
+	return (((time - 15) * 6)) + (((new Date().getSeconds() * 6)/60))
+}
+
+
+
+secondHand = new clockHand()
+secondHand.length = 240
+secondHand.width = 2
+secondHand.currentTime = function() {
+	return new Date().getSeconds();
+}
+secondHand.adjustedTime = function() {
+	var time = secondHand.currentTime()
+	if (time < 15) {
+		return (time += 60)
+	}
+	return time
+}
+secondHand.angle = function() {
+	var time = secondHand.adjustedTime()
+	return (((time - 15) * 6))
+}
+
+
+function moveHand(hand){
+  var theta = hand.angle() * Math.PI / 180;
+  hand.x = (hand.length*(Math.cos(theta)) + hand.centerX)
+  hand.y = (hand.length*(Math.sin(theta)) + hand.centerY)
+  return hand
+}
+

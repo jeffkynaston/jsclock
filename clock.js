@@ -14,12 +14,12 @@ function keepTime() {
     drawCenter()
     drawLogo()
     drawTitle()
-    var coords = moveHourHand()
-    drawHourHand(coords.x,coords.y)
-    var coords = moveMinuteHand()
-    drawMinuteHand(coords.x,coords.y)
-    var coords = moveSecondHand()
-    drawSecondHand(coords.x,coords.y)
+    moveHand(hourHand)
+    drawHand(hourHand)
+    moveHand(minuteHand)
+    drawHand(minuteHand)
+    moveHand(secondHand)
+    drawHand(secondHand)
 }
 
 function drawFrame() {
@@ -73,33 +73,14 @@ function drawCenter() {
 	$context.fill()
 }
 
-function drawHourHand(xCoord, yCoord) {
+function drawHand(hand) {
 		$context.beginPath();
-    $context.moveTo(300,300);
-    $context.lineTo(xCoord,yCoord);
-    $context.lineWidth=7;
+    $context.moveTo(hand.centerX,hand.centerY);
+    $context.lineTo(hand.x,hand.y);
+    $context.lineWidth=hand.width;
     styleHands()
     $context.stroke();
 }
-
-function drawMinuteHand(xCoord, yCoord) {
-		$context.beginPath();
-    $context.moveTo(300,300);
-    $context.lineTo(xCoord, yCoord);
-    $context.lineWidth=5;
-    styleHands()
-    $context.stroke();
-}
-
-function drawSecondHand(xCoord, yCoord) {
-		$context.beginPath();
-    $context.moveTo(300,300);
-    $context.lineTo(xCoord, yCoord);
-    $context.lineWidth=2;
-    styleHands()
-    $context.stroke();
-}
-
 
 function styleHands() {
 	$context.shadowOffsetX = 4;
