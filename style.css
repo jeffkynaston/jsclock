@@ -12,8 +12,11 @@ body {
 	margin: auto;
 	margin-top: 2em;
 	position: relative;
+    font-family: 'Raleway';
+    overflow: visible;
 }
 
 canvas {
+    overflow: visible;
 	/*border: 1px solid #aaa;*/
 }
