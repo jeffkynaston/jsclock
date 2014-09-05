@@ -1,25 +1,3 @@
-var d = new Date();
-
-// adjusting hours for coordinate system
-var currentHour = d.getHours();
-if (currentHour > 14) {
-	currentHour -= 12
-}
-var currentMinute = d.getMinutes();
-if (currentMinute < 15) {
-	currentMinute += 60
-}
-var currentSecond = d.getSeconds();
-if (currentSecond < 15) {
-	currentSecond += 60
-}
-
-// with this coord system, 0,0 is actually at 3:00
-// subtract 1/4th of the time available in one rotation, and multply by 360/total time available
-// Ajust hours to start partway between current and next
-var t1Angle = ((currentHour - 3) * 30) + (((d.getMinutes() * 6)/12)) // starting point for hour hand
-var t2Angle = (((currentMinute - 15) * 6)) + (((d.getSeconds() * 6)/60)) // starting point for minute hand
-var t3Angle = ((currentSecond - 15) * 6) // starting point for second hand
 var ccX = 300; // circle center coordinate X, should be same as the center of the clock face
 var ccY = 300; // circle center coordinate Y, should be same as the center of the clock face
 var t1Radius = 150; // length of hour hand
