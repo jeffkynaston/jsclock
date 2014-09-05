@@ -9,7 +9,7 @@ function getCanvas() {
 }
 
 function keepTime() {
-    drawFrame()
+    drawFrame(clockFace)
     drawNumbers()
     drawCenter()
     drawLogo()
@@ -22,11 +22,15 @@ function keepTime() {
     drawHand(secondHand)
 }
 
-function drawFrame() {
+var clockFace = {
+	"color": "#045476"
+}
+
+function drawFrame(clock) {
 	$context.beginPath();
   $context.arc(300,300,290,0,Math.PI*2,true);
   $context.shadowColor   = 'rgba(200, 200, 200, 0)';
-  $context.fillStyle = "#045476"
+  $context.fillStyle = clock.color
 	$context.fill()
 	$context.strokeStyle = '#fff';
 	$context.lineWidth=10;

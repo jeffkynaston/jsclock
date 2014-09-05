@@ -20,3 +20,9 @@ canvas {
     overflow: visible;
 	/*border: 1px solid #aaa;*/
 }
+
+#picker {
+    position: absolute;
+    top: 100;
+    left: 10;
+}

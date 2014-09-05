@@ -42,8 +42,6 @@ minuteHand.angle = function() {
 	return (((time - 15) * 6)) + (((new Date().getSeconds() * 6)/60))
 }
 
-
-
 secondHand = new clockHand()
 secondHand.length = 240
 secondHand.width = 2
