@@ -18,11 +18,27 @@ body {
 
 canvas {
     overflow: visible;
+    position: absolute;
 	/*border: 1px solid #aaa;*/
 }
 
 #picker {
     position: absolute;
-    top: 100;
-    left: 10;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+}
+
+#sizer {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 999;
+}
+
+.display {
+    margin: auto 0px;
+    height: 600px;
+    width: 600px;
+    position: relative;
 }

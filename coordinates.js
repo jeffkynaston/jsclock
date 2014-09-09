@@ -1,14 +1,22 @@
 function clockHand() {
-	this.centerX = 300
-	this.centerY = 300
-	this.x = 300
+	this.centerX = function() {
+		return clockFace.centerX
+	}
+	this.centerY = function() {
+	 	return clockFace.centerY
+	}
+	this.x = 300	
 	this.y = 300
 	this.color = "#fff"
 }
 
 hourHand = new clockHand()
-hourHand.length = 150
-hourHand.width = 8
+hourHand.length = function() {
+	return (clockFace.centerX/2)
+}
+hourHand.width = function() {
+	return (clockFace.centerX/37.5)
+}
 hourHand.currentTime = function() {
 	return new Date().getHours();
 }
@@ -25,8 +33,12 @@ hourHand.angle = function() {
 }
 
 minuteHand = new clockHand()
-minuteHand.length = 200
-minuteHand.width = 5
+minuteHand.length = function() {
+ return (clockFace.centerX/1.5)
+}
+minuteHand.width = function() {
+	return (clockFace.centerX/60)
+}
 minuteHand.currentTime = function() {
 	return new Date().getMinutes();
 }
@@ -43,8 +55,12 @@ minuteHand.angle = function() {
 }
 
 secondHand = new clockHand()
-secondHand.length = 240
-secondHand.width = 2
+secondHand.length = function() {
+	return (clockFace.centerX/1.25)
+}
+secondHand.width = function() {
+	return (clockFace.centerX/150)
+}
 secondHand.currentTime = function() {
 	return new Date().getSeconds();
 }
@@ -63,8 +79,8 @@ secondHand.angle = function() {
 
 function moveHand(hand){
   var theta = hand.angle() * Math.PI / 180;
-  hand.x = (hand.length*(Math.cos(theta)) + hand.centerX)
-  hand.y = (hand.length*(Math.sin(theta)) + hand.centerY)
+  hand.x = (hand.length()*(Math.cos(theta)) + hand.centerX())
+  hand.y = (hand.length()*(Math.sin(theta)) + hand.centerY())
   return hand
 }
 
