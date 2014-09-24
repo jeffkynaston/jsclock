@@ -76,7 +76,6 @@ secondHand.angle = function() {
 	return (((time - 15) * 6))
 }
 
-
 function moveHand(hand){
   var theta = hand.angle() * Math.PI / 180;
   hand.x = (hand.length()*(Math.cos(theta)) + hand.centerX())

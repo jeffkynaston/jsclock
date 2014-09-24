@@ -29,17 +29,6 @@ function keepTime() {
     drawHand(secondHand)
 }
 
-function resize() {
-	clockFace.centerX = parseInt(this.value)
-	clockFace.centerY = parseInt(this.value)
-	$('.display').height(parseInt(this.value))
-	$('.display').width(parseInt(this.value))
-	$('canvas').attr({width: this.value*2, height: this.value*2})
-	$('canvas').css("top", "" + ((600-(parseInt(this.value)*2))/2) + "px")
-	$('canvas').css("left", "" + ((600-(parseInt(this.value)*2))/2) + "px")
-
-}
-
 var clockFace = {
 	"color": "#045476",
 	"borderColor": "#fff",
@@ -119,4 +108,15 @@ function styleHands() {
 	$context.shadowBlur    = 3;
 	$context.shadowColor   = 'rgba(125, 125, 125, .5)';
   $context.strokeStyle = '#fff';
+}
+
+function resize() {
+	clockFace.centerX = parseInt(this.value)
+	clockFace.centerY = parseInt(this.value)
+	$('.display').height(parseInt(this.value))
+	$('.display').width(parseInt(this.value))
+	$('canvas').attr({width: this.value*2, height: this.value*2})
+	$('canvas').css("top", "" + ((600-(parseInt(this.value)*2))/2) + "px")
+	$('canvas').css("left", "" + ((600-(parseInt(this.value)*2))/2) + "px")
+
 }
